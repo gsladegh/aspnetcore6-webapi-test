@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using HotelListing.API.Data;
+using HotelListing.API.Models.Country;
 
 namespace HotelListing.API.Configurations
 {
@@ -6,7 +8,8 @@ namespace HotelListing.API.Configurations
     {
         public MapperConfig() 
         {
-            
+            // reverse map allows you to map in either direction
+            CreateMap<Country, CreateCountryDto>().ReverseMap();
         }
     }
 }

@@ -1,3 +1,4 @@
+using HotelListing.API.Configurations;
 using HotelListing.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -31,6 +32,9 @@ builder.Services.AddCors(options =>
 // ctx - builder context (HostBuilderContext)
 // ctx.Configuration references the settings files, like appsettings.json
 builder.Host.UseSerilog((ctx, lc) => lc.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration));
+
+// add the Auto Mapper for injuection
+builder.Services.AddAutoMapper(typeof(MapperConfig));
 
 var app = builder.Build(); // by the time it hits this line it should have everything it needs
 

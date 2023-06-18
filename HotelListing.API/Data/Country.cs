@@ -1,6 +1,7 @@
 ﻿namespace HotelListing.API.Data
 {
     /// <summary>
+    /// these classes in the data folder are for data operations, not the API
     /// one country can have many hotels
     /// </summary>
     public class Country

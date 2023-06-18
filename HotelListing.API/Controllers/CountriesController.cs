@@ -24,21 +24,25 @@ namespace HotelListing.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Country>>> GetCountries()
         {
-          if (_context.Countries == null)
-          {
-              return NotFound();
-          }
-            return await _context.Countries.ToListAsync();
+            if (_context.Countries == null)
+            {
+                return NotFound();
+            }
+            // Select * from Countries
+            // return await _context.Countries.ToListAsync();
+            var countries = await _context.Countries.ToListAsync();
+            return Ok(countries);
+
         }
 
         // GET: api/Countries/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Country>> GetCountry(int id)
         {
-          if (_context.Countries == null)
-          {
-              return NotFound();
-          }
+            if (_context.Countries == null)
+            {
+                return NotFound();
+            }
             var country = await _context.Countries.FindAsync(id);
 
             if (country == null)
@@ -46,7 +50,7 @@ namespace HotelListing.API.Controllers
                 return NotFound();
             }
 
-            return country;
+            return Ok(country);
         }
 
         // PUT: api/Countries/5
@@ -85,10 +89,13 @@ namespace HotelListing.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Country>> PostCountry(Country country)
         {
-          if (_context.Countries == null)
-          {
-              return Problem("Entity set 'HotelListingDbContext.Countries'  is null.");
-          }
+            if (_context.Countries == null)
+            {
+                return Problem("Entity set 'HotelListingDbContext.Countries'  is null.");
+            }
+            // database = _context
+            // table = Countries
+
             _context.Countries.Add(country);
             await _context.SaveChangesAsync();
 
